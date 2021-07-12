@@ -35,3 +35,4 @@ if (SDK::Utilities::DiscordHelper::IsAiming())
 
 						}
 					}
+					}
