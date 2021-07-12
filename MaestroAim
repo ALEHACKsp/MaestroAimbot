@@ -1,0 +1,37 @@
+if (SDK::Utilities::DiscordHelper::IsAiming())
+				{
+					if (SDK::Utilities::CheckIfInFOV(CurrentActor, FOVmax)) {
+
+						if (settings.vischeck and IsVisible)
+						{
+							if (settings.memory)
+							{
+								SDK::Structs::Vector3 NewAngle = SDK::Utilities::GetRotation(CurrentActor);
+
+								if (NewAngle.x == 0 && NewAngle.y == 0) continue;
+
+								if (settings.smoothness > 0)
+									NewAngle = SDK::Utilities::SmoothAngles(SDK::Utilities::CamRot, NewAngle);
+
+								NewAngle.z = 0;
+
+								SDK::Classes::AController::ValidateClientSetRotation(NewAngle, false);
+								SDK::Classes::AController::ClientSetRotation(NewAngle, false);
+							}
+						}
+						else if (!settings.vischeck)
+						{
+							SDK::Structs::Vector3 NewAngle = SDK::Utilities::GetRotation(CurrentActor);
+
+							if (NewAngle.x == 0 && NewAngle.y == 0) continue;
+
+							if (settings.smoothness > 0)
+								NewAngle = SDK::Utilities::SmoothAngles(SDK::Utilities::CamRot, NewAngle);
+
+							NewAngle.z = 0;
+
+							SDK::Classes::AController::ValidateClientSetRotation(NewAngle, false);
+							SDK::Classes::AController::ClientSetRotation(NewAngle, false);
+
+						}
+					}
